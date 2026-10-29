@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeLens — AI Code Quality Assistant</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#"><span class="brand-icon">⌘</span> CodeLens</a><span class="top-tag">CODE QUALITY ASSISTANT</span></header>
+<main class="shell">
+<section class="hero"><p class="eyebrow">WRITE BETTER CODE</p><h1>Find issues before<br><span>they find you.</span></h1>
+<p class="subtitle">Review code for common bugs, risky patterns, and maintainability issues. Get line-specific explanations and practical suggestions.</p></section>
+<section class="workspace">
+<div class="editor-panel panel">
+<div class="panel-head"><div><span class="dot"></span><strong>Code workspace</strong></div>
+<select id="language" aria-label="Programming language"><option value="python">Python</option><option value="java">Java</option><option value="javascript">JavaScript</option></select></div>
+<textarea id="code" spellcheck="false" aria-label="Code input" placeholder="Paste your code here...">def get_user(name):
+    password = "demo-secret"
+    try:
+        user = eval(name)
+    except:
+        return None
+    if user == None:
+        print("No user")
+    return user</textarea>
+<div class="editor-foot"><span id="line-count">8 lines</span><button id="analyze-btn" class="primary-btn">✦ Analyze code</button></div>
+<p class="privacy-note">This demo uses local heuristic rules; code is not sent to an AI provider.</p>
+</div>
+<div class="results-panel panel">
+<div class="panel-head"><div><strong>Analysis report</strong><span class="live-label">● READY</span></div><button id="clear-btn" class="text-btn">Clear results</button></div>
+<div id="empty-state" class="empty-state"><div class="empty-icon">⌁</div><h2>Ready when you are</h2><p>Run an analysis to see prioritized findings, explanations, and suggestions here.</p></div>
+<div id="loading" class="loading hidden"><div class="spinner"></div><p>Reviewing code patterns…</p></div>
+<div id="report" class="hidden"><div class="stats">
+<div class="stat"><span>Total findings</span><strong id="total">0</strong></div><div class="stat danger"><span>High</span><strong id="high">0</strong></div>
+<div class="stat warning"><span>Medium</span><strong id="medium">0</strong></div><div class="stat"><span>Low / Info</span><strong id="other">0</strong></div></div>
+<div id="findings" class="findings"></div><p id="report-note" class="report-note"></p></div>
+<div id="error" class="error hidden"></div>
+</div></section>
+<footer><span>CodeLens · Student project prototype</span><span>Static heuristics · No code execution</span></footer>
+</main><script src="{{ url_for('static', filename='app.js') }}"></script></body></html>
